@@ -1,2 +1,3 @@
-# dotfiles
-My NixOS config
+# kognise/dotfiles
+
+My NixOS config, quite fresh so not that fancy.
