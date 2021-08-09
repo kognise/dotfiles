@@ -1,0 +1,2 @@
+# dotfiles
+My NixOS config
