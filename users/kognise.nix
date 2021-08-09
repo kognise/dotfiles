@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  users.mutableUsers = false;
   users.users.kognise = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];

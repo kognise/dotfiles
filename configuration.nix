@@ -78,4 +78,7 @@ in
     fira-code
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
+
+  # Force all users to be defined solely from NixOS configuration.
+  users.mutableUsers = false;
 }
