@@ -7,6 +7,7 @@
   networking.hostName = "dazzler";
   time.timeZone = "America/New_York";
 
+  services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.displayManager.setupCommands =
     let xrandr = "${pkgs.xlibs.xrandr}/bin/xrandr";
     in ''

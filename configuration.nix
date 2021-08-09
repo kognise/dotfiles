@@ -26,7 +26,6 @@ in
     layout = "us"; # Set the keyboard layout.
     desktopManager.plasma5.enable = true;
     displayManager.sddm.enable = true;
-    videoDrivers = [ "nvidia" ];
   };
 
   services.printing.enable = true;
