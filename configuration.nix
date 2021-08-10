@@ -69,10 +69,7 @@ in
   boot.supportedFilesystems = [ "ntfs" ];
 
   fonts.fonts = with pkgs; [
-    # Sans-serif
     inter
-
-    # Monospace
     noto-fonts
     noto-fonts-emoji
     fira-code

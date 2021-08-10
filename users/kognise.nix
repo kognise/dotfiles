@@ -21,6 +21,8 @@
       alacritty
       starship
       gotop
+      ark
+      obsidian
 
       # Theoretically required for VSCode
       desktop-file-utils
