@@ -23,6 +23,8 @@
       gotop
       ark
       obsidian
+      gwenview
+      zoom-us
 
       # Theoretically required for VSCode
       desktop-file-utils
@@ -32,7 +34,7 @@
   };
 
   home-manager.users.kognise = {
-    home.sessionVariables.GIT_YOINK_ROOT = "~/Documents/";
+    home.sessionVariables.GIT_YOINK_ROOT = "~/Documents/Programming/";
 
     programs.bash = {
       enable = true;
