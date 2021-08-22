@@ -16,7 +16,7 @@
       neofetch
       nodejs
       yarn
-      git
+      okular
       vscode
       alacritty
       starship
@@ -25,6 +25,10 @@
       obsidian
       gwenview
       zoom-us
+      rustup
+      firefox
+      reaper
+      osu-lazer
 
       # Theoretically required for VSCode
       desktop-file-utils

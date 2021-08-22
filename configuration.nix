@@ -32,6 +32,9 @@ in
     libnotify
     file
     jq
+    git
+    libwacom
+    clang
   ];
 
   programs.steam.enable = true;
@@ -46,6 +49,7 @@ in
     layout = "us"; # Set the keyboard layout.
     desktopManager.plasma5.enable = true;
     displayManager.sddm.enable = true;
+    wacom.enable = true;
   };
 
   services.printing.enable = true;
