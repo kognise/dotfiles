@@ -35,6 +35,9 @@ in
     git
     libwacom
     clang
+
+    wineWowPackages.stable
+    (winetricks.override { wine = wineWowPackages.stable; })
   ];
 
   programs.steam.enable = true;
@@ -78,6 +81,8 @@ in
     noto-fonts-emoji
     fira-code
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    wineWowPackages.fonts
+    corefonts
   ];
 
   # Force all users to be defined solely from NixOS configuration.
