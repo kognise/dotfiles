@@ -35,6 +35,7 @@
       osu-lazer
       exa
       fzf
+      zoxide
 
       # Theoretically required for VSCode
       desktop-file-utils
@@ -72,19 +73,21 @@
       initExtra = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
+        eval "$(zoxide init zsh)"
       '';
 
       shellAliases = {
         skate = "SUDO_EDITOR=kate sudoedit";
         open = "xdg-open";
+        z = "zoxide";
         ls = "exa";
+        la = "ls -la";
       };
 
       zplug = {
         enable = true;
         plugins = [
           { name = "Aloxaf/fzf-tab"; }
-          { name = "agkozak/zsh-z"; }
           { name = "zsh-users/zsh-syntax-highlighting"; }
           { name = "zsh-users/zsh-history-substring-search"; }
         ];
