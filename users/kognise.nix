@@ -79,7 +79,6 @@
       shellAliases = {
         skate = "SUDO_EDITOR=kate sudoedit";
         open = "xdg-open";
-        z = "zoxide";
         ls = "exa";
         la = "ls -la";
       };
