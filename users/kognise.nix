@@ -5,6 +5,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
     hashedPassword = "$6$Xbkutbcm1G8$P.OVMoq/1eKU48ZSwOL8FIOfdojyRBNag6vxc2vMjr1IAOqjMhb0GVODxCK9ZbXgIfhGaD2rs8PNIW3xXFYeP0";
+    shell = pkgs.zsh;
 
     packages = with pkgs; [
       brave
@@ -28,7 +29,12 @@
       rustup
       firefox
       reaper
+      minecraft
+      jre8
+      appimage-run
       osu-lazer
+      exa
+      fzf
 
       # Theoretically required for VSCode
       desktop-file-utils
@@ -39,17 +45,6 @@
 
   home-manager.users.kognise = {
     home.sessionVariables.GIT_YOINK_ROOT = "~/Documents/Programming/";
-
-    programs.bash = {
-      enable = true;
-      shellAliases.skate = "SUDO_EDITOR=kate sudoedit";
-
-      # Sourced in .bash_profile, not .bashrc, so this gets us environment variables
-      # in interactive sessions like terminals.
-      initExtra = ''
-        . "$HOME/.profile"
-      '';
-    };
 
     programs.git = {
       enable = true;
@@ -65,7 +60,35 @@
 
     programs.starship = {
       enable = true;
-      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      autocd = true;
+
+      initExtra = ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+      '';
+
+      shellAliases = {
+        skate = "SUDO_EDITOR=kate sudoedit";
+        open = "xdg-open";
+        ls = "exa";
+      };
+
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "Aloxaf/fzf-tab"; }
+          { name = "agkozak/zsh-z"; }
+          { name = "zsh-users/zsh-syntax-highlighting"; }
+          { name = "zsh-users/zsh-history-substring-search"; }
+        ];
+      };
     };
 
     programs.alacritty = {
