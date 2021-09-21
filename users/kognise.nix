@@ -27,7 +27,7 @@
       gwenview
       zoom-us
       rustup
-      firefox
+      latest.firefox-nightly-bin
       reaper
       minecraft
       jre8
@@ -36,11 +36,14 @@
       exa
       fzf
       zoxide
+      tokei
+      google-chrome
+      virt-manager
 
       # Theoretically required for VSCode
-      desktop-file-utils
-      libsecret
-      gnome.gnome-keyring
+      # desktop-file-utils
+      # libsecret
+      # gnome.gnome-keyring
     ];
   };
 

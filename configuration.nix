@@ -24,6 +24,14 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays =
+    let
+      moz-rev = "master";
+      moz-url = builtins.fetchTarball { url = "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz";};
+      nightlyOverlay = (import "${moz-url}/firefox-overlay.nix");
+    in [
+      nightlyOverlay
+    ];
   environment.systemPackages = with pkgs; [
     kde-gtk-config
     kgpg
@@ -39,6 +47,8 @@ in
     wineWowPackages.stable
     (winetricks.override { wine = wineWowPackages.stable; })
   ];
+
+  virtualisation.libvirtd.enable = true;
 
   programs.steam.enable = true;
 
