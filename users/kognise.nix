@@ -31,6 +31,7 @@
       reaper
       minecraft
       jre8
+      insomnia
       appimage-run
       osu-lazer
       exa
@@ -39,16 +40,24 @@
       tokei
       google-chrome
       virt-manager
+      virt-viewer
+      vlc
+      mtr
+      transmission-gtk
+      calibre
 
       # Theoretically required for VSCode
       # desktop-file-utils
-      # libsecret
-      # gnome.gnome-keyring
     ];
   };
 
   home-manager.users.kognise = {
     home.sessionVariables.GIT_YOINK_ROOT = "~/Documents/Programming/";
+    home.sessionVariables.TERM = "xterm-256color";
+
+    programs.gpg.scdaemonSettings = {
+      reader-port = "Yubico Yubi";
+    };
 
     programs.git = {
       enable = true;

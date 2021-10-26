@@ -43,36 +43,58 @@ in
     git
     libwacom
     clang
+    pkgconfig
+    xorg.libX11
+    xorg.libXrandr
+    libsecret
+    unzip
 
     wineWowPackages.stable
     (winetricks.override { wine = wineWowPackages.stable; })
   ];
 
+  environment.shellInit = ''
+    export GPG_TTY="$(tty)"
+    gpg-connect-agent /bye
+    export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+  '';
+
   virtualisation.libvirtd.enable = true;
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
-  programs.steam.enable = true;
+  programs = {
+    steam.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
+    ssh.startAgent = false;
   };
 
-  services.xserver = {
-    enable = true;
-    layout = "us"; # Set the keyboard layout.
-    desktopManager.plasma5.enable = true;
-    displayManager.sddm.enable = true;
-    wacom.enable = true;
-  };
+  services = {
+    udev.packages = [ pkgs.yubikey-personalization ];
 
-  services.printing.enable = true;
-  services.printing.drivers = with pkgs; [
-    gutenprint
-    gutenprintBin
-    brlaser
-    brgenml1lpr
-    brgenml1cupswrapper
-  ];
+    xserver = {
+      enable = true;
+      layout = "us"; # Set the keyboard layout.
+      desktopManager.plasma5.enable = true;
+      displayManager.sddm.enable = true;
+      wacom.enable = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
+
+    printing.enable = true;
+    printing.drivers = with pkgs; [
+      gutenprint
+      gutenprintBin
+      brlaser
+      brgenml1lpr
+      brgenml1cupswrapper
+    ];
+  };
 
   sound.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
@@ -84,6 +106,7 @@ in
   home-manager.useGlobalPkgs = true;
 
   boot.supportedFilesystems = [ "ntfs" ];
+  networking.firewall.allowedTCPPorts = [ 8080 ];
 
   fonts.fonts = with pkgs; [
     inter
