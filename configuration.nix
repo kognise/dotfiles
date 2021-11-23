@@ -23,6 +23,8 @@ in
     keyMap = "us";
   };
 
+  hardware.opengl.driSupport32Bit = true;
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays =
     let
@@ -48,9 +50,7 @@ in
     xorg.libXrandr
     libsecret
     unzip
-
-    wineWowPackages.stable
-    (winetricks.override { wine = wineWowPackages.stable; })
+    lutris
   ];
 
   environment.shellInit = ''

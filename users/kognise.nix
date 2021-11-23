@@ -45,15 +45,21 @@
       mtr
       transmission-gtk
       calibre
-
-      # Theoretically required for VSCode
-      # desktop-file-utils
+      ngrok
+      peek
+      go
+      whois
+      bind
+      noisetorch
+      obs-studio
     ];
   };
 
   home-manager.users.kognise = {
     home.sessionVariables.GIT_YOINK_ROOT = "~/Documents/Programming/";
     home.sessionVariables.TERM = "xterm-256color";
+
+    programs.go.enable = true;
 
     programs.gpg.scdaemonSettings = {
       reader-port = "Yubico Yubi";
