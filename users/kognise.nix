@@ -99,6 +99,7 @@
         open = "xdg-open";
         ls = "exa";
         la = "ls -la";
+        ns = "nix-shell --run zsh -p";
       };
 
       zplug = {
