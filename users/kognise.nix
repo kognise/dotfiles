@@ -52,6 +52,8 @@
       bind
       noisetorch
       obs-studio
+      ghc
+      haskell-language-server
     ];
   };
 
