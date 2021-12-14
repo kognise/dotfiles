@@ -4,7 +4,7 @@
   users.users.kognise = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
-    hashedPassword = "$6$Xbkutbcm1G8$P.OVMoq/1eKU48ZSwOL8FIOfdojyRBNag6vxc2vMjr1IAOqjMhb0GVODxCK9ZbXgIfhGaD2rs8PNIW3xXFYeP0";
+    hashedPassword = "$6$ZHq9gJR/ztkz$6otJUOWBy8WP393HE0Oh52ODlEg8lgIrLkB/KxjuDR5LygH9aSzU/JowCU9KcJWuGmWf1yuCGW7zSoDq7zciN/";
     shell = pkgs.zsh;
 
     packages = with pkgs; [
@@ -54,6 +54,7 @@
       obs-studio
       ghc
       haskell-language-server
+      anki
     ];
   };
 
