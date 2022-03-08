@@ -55,6 +55,8 @@
       ghc
       haskell-language-server
       anki
+      helio-workstation
+      distrho
     ];
   };
 

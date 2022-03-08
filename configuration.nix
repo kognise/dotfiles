@@ -1,16 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  # Install Home Manager from a specific Git release.
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    rev = "b39647e52ed3c0b989e9d5c965e598ae4c38d7ef";
-    ref = "release-21.05";
-  };
+  # Install Home Manager from a tarball.
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
 in
 {
   imports = [
-    (import "${home-manager}/nixos")      # Include Home Managers NixOS package.
+    (import "${home-manager}/nixos")      # Include Home Manager's NixOS package.
     /etc/nixos/hardware-configuration.nix # Include the automatic hardware scan results.
     
     ./users/kognise.nix # Include user-specific configuration for kognise.
@@ -34,7 +30,12 @@ in
     in [
       nightlyOverlay
     ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-13.6.9"
+  ];
+
   environment.systemPackages = with pkgs; [
+    alsa-utils
     kde-gtk-config
     kgpg
     plasma-browser-integration
@@ -96,17 +97,31 @@ in
     ];
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.pulseaudio.enable = true;
+  # Audio via PipeWire, no PulseAudio here!
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+
+    media-session.config.alsa-monitor = {
+      actions = {
+        update-props = {
+          api.alsa.headroom = 512;
+        };
+      };
+    };
+  };
 
   # I plan on only using Home Manager for configuration so this should
   # ensure that it doesn't screw any of my packages up.
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
 
+  # Add support for NTFS.
   boot.supportedFilesystems = [ "ntfs" ];
-  networking.firewall.allowedTCPPorts = [ 8080 ];
 
   fonts.fonts = with pkgs; [
     inter
